@@ -1,6 +1,7 @@
 {
-    "port": "COM3",
-    "board": "arduino:avr:uno",
+    "port": "COM11",
+    "board": "arduino:avr:micro",
     "programmer": "arduino:avrispmkii",
-    "sketch": "muteButton.ino"
+    "sketch": "muteButton.ino",
+    "output": "../Build"
 }
