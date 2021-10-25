@@ -21,11 +21,12 @@
 //#define TIMEOUT 7000   // test timeout at 2 seconds
 #define TIMEOUT 3600000 // prod timeout shoudl be 1 hour
 #define SPEAKDELAY 500  // ms to hold button before engaging speaking mode
-#define ISDEBUG 1       // if ISDEBUT == 1 then don't send keystrokes (for debugging)
+#define ISDEBUG 0       // if ISDEBUT == 1 then don't send keystrokes (for debugging)
 #define DEBOUNCE 15
+#define MODECHANGETAPS 3
 
 int breathBrightness = 0; // global integer for tracking color in idle mode
-int lastState = HIGH;     // global for last state of button
+int lastState = LOW;      // global for last state of button
 int meetingMode = 0;      // 0 = teams, 1 = zoom
 int modePresses = 0;      // track number of clicks to change modes
 int mode = 0;
@@ -46,9 +47,13 @@ void setup()
     Keyboard.begin();                                        // initialize keyboard emmulation
     Serial.begin(115200);                                    // begin serial output
     FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS); // initialize FastLED library
-
-    showCurrentMode();
-
+    delay(1000);
+    fill_solid(leds, NUM_LEDS, CRGB::Purple); // fill led ring purple
+    FastLED.show();                           // show led changes
+    FastLED.delay(2000);
+    fill_solid(leds, NUM_LEDS, CRGB::Red); // fill led ring purple
+    FastLED.show();                        // show led changes
+    FastLED.delay(20);                     // pause 2 seconds
     idleStart = millis();
     pressStartTime = millis();
 }
@@ -58,9 +63,9 @@ void setup()
 
 void loop()
 {
-    //int nowState = digitalRead(BUTTON); // read button state
     delay(DEBOUNCE);
-    int nowState = getButtonState();
+    int nowState = digitalRead(BUTTON); // read button state
+    //int nowState = getButtonState();
 
     if (lastState == LOW && nowState == HIGH)
     {                              //new button press
@@ -89,7 +94,7 @@ void loop()
     {
         holdTime = millis() - pressStartTime;
         int tapInterval = millis() - lastTapTime;
-        Serial.println("button release, held for:" + String(holdTime) + ". pressStartTime:" + String(pressStartTime) + " / tapInterval:" + String(tapInterval) + " / modePresses:" + String(modePresses));
+        //Serial.println("button release, held for:" + String(holdTime) + ". pressStartTime:" + String(pressStartTime) + " / tapInterval:" + String(tapInterval) + " / modePresses:" + String(modePresses));
 
         idleStart = millis();
 
@@ -99,8 +104,8 @@ void loop()
             { // if tap interval is recent, increment taps
 
                 modePresses++;
-                Serial.println("incrementing mode presses to:" + String(modePresses));
-                if (modePresses >= 4) // mode presses exceed threshold, change mode
+                //Serial.println("incrementing mode presses to:" + String(modePresses));
+                if (modePresses >= MODECHANGETAPS) // mode presses exceed threshold, change mode
                 {
                     handleModeChange(); // handle mode change as this is the 3rd tap
                 }
@@ -149,49 +154,25 @@ void patternRainbow()
 
 void handleModeChange()
 {
-    // if mode presses equal 3, change modes
-    Serial.print("Old meeting mode:");
-    Serial.println(meetingMode);
-
-    if (meetingMode == 0)
-    {
-        meetingMode = 1;
-    }
-    else
-    {
-        meetingMode = 0;
-    }
-
-    Serial.print("meeting mode after incrementing:");
-    Serial.println(meetingMode);
-
-    modePresses = 0;
-
-    Serial.println("new meeting mode:" + String(meetingMode));
-
-    showCurrentMode(); // show the current meeting mode
-}
-
-void showCurrentMode()
-{
-    Serial.print("Current meeting mode: ");
-    Serial.println(meetingMode);
-
     int flashes = 3;     // number of times to flash for mode indication
     int lightTime = 500; // time to light up during flash
     int darkTime = 250;  // time to be dark during flash
     CRGB color;
 
+    // if mode presses equal 3, change modes
+
     if (meetingMode == 0)
     {
-        color = CRGB::Purple;
+        meetingMode = 1;
+        color = CRGB::Blue;
     }
     else
     {
-        color = CRGB::Blue;
+        meetingMode = 0;
+        color = CRGB::Purple;
     }
 
-    Serial.println(color);
+    modePresses = 0;
 
     for (int i = 0; i < flashes; i++)
     {
@@ -211,34 +192,24 @@ void toggleMute()
 {
     //Serial.println("toggleMute()");
 
-    if (ISDEBUG == 0)
-    {
-        switch (meetingMode)
-        {
-        case 0:                             // teams is active
-            Keyboard.press(KEY_LEFT_CTRL);  // press left CTRL
-            Keyboard.press(KEY_LEFT_SHIFT); // press left shift
-            Keyboard.press('m');            // press m
-
-            delay(100); // pause to confirm keystrokes register
-
-            Keyboard.releaseAll(); // release all keys
-            break;
-
-        case 1:                           // zoom is active
-            Keyboard.press(KEY_LEFT_ALT); // press left ALT
-            Keyboard.press('a');          // press a
-
-            delay(100); // pause to confirm keystrokes register
-
-            Keyboard.releaseAll(); // release all keys
-            break;
-        }
+    if (meetingMode == 0)
+    {                                   // teams is active
+        Keyboard.press(KEY_LEFT_CTRL);  // press left CTRL
+        Keyboard.press(' '); // press left shift
+        //Keyboard.press('M');            // press m
     }
+    else
+    {
+        Keyboard.press(KEY_LEFT_ALT); // press left ALT
+        Keyboard.press('a');          // press a
+    }
+    delay(100); // pause to confirm keystrokes register
+
+    Keyboard.releaseAll(); // release all keys
 }
 
 bool getButtonState()
-{
+{ /* 
     // read the state of the switch/button:
     int currentState = digitalRead(BUTTON);
 
@@ -262,12 +233,12 @@ bool getButtonState()
 
         // if the button state has changed:
         if (lastSteadyState == LOW && currentState == HIGH)
-            Serial.println("The button is pressed");
-        else if (lastSteadyState == HIGH && currentState == LOW)
-            Serial.println("The button is released");
+            Serial.println("The button is pressed")
+            else if (lastSteadyState == HIGH && currentState == LOW)
+                //Serial.println("The button is released");
 
-        // save the the last steady state
-        lastSteadyState = currentState;
+                // save the the last steady state
+                lastSteadyState = currentState;
     }
-    return currentState;
+    return currentState; */
 }
