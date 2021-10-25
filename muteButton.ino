@@ -148,7 +148,7 @@ void patternRainbow()
     fill_rainbow(leds, ledCount, breathBrightness);
 
     FastLED.show();
-    FastLED.delay(20);
+    //FastLED.delay(20);
 }
 
 void handleModeChange()
