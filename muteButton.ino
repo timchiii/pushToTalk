@@ -14,16 +14,15 @@
 #include "HardwareSerial.h"
 #include <FastLED.h>
 
-#define NUM_LEDS 24    // number of leds
-#define DATA_PIN 5     // led ring data pin
-#define BRIGHTNESS 200 // led ring brightness
-#define BUTTON 4       // pin for button
-//#define TIMEOUT 7000   // test timeout at 2 seconds
-#define TIMEOUT 3600000 // prod timeout shoudl be 1 hour
-#define SPEAKDELAY 500  // ms to hold button before engaging speaking mode
-#define ISDEBUG 0       // if ISDEBUT == 1 then don't send keystrokes (for debugging)
-#define DEBOUNCE 15
-#define MODECHANGETAPS 3
+#define ledCount 24    // number of leds
+#define dataPin 5     // led ring data pin
+#define buttonPin 4       // pin for button
+//#define rgbTimeout 7000   // test timeout at 2 seconds
+#define rgbTimeout 3600000 // prod timeout shoudl be 1 hour
+#define speakDelay 500  // ms to hold button before engaging speaking mode
+#define debounceTimeout 15 // delay each loop by this to debounce button input
+#define modeChangeTaps 3 // number of taps to change modes
+#define maxTapInterval 250 // max interval between taps
 
 int breathBrightness = 0; // global integer for tracking color in idle mode
 int lastState = LOW;      // global for last state of button
@@ -38,20 +37,20 @@ long lastTapTime;
 long idleStart; // idle start time in millis()
 long lastDebounceTime;
 
-CRGB leds[NUM_LEDS]; // initialize LED strip
+CRGB leds[ledCount]; // initialize LED strip
 
 void setup()
 {
-    pinMode(BUTTON, INPUT);                                  // set button pin to input
-    pinMode(DATA_PIN, OUTPUT);                               // set led ring pin to output
+    pinMode(buttonPin, INPUT);                                  // set button pin to input
+    pinMode(dataPin, OUTPUT);                               // set led ring pin to output
     Keyboard.begin();                                        // initialize keyboard emmulation
     Serial.begin(115200);                                    // begin serial output
-    FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS); // initialize FastLED library
+    FastLED.addLeds<WS2812B, dataPin, GRB>(leds, ledCount); // initialize FastLED library
     delay(1000);
-    fill_solid(leds, NUM_LEDS, CRGB::Purple); // fill led ring purple
+    fill_solid(leds, ledCount, CRGB::Purple); // fill led ring purple
     FastLED.show();                           // show led changes
     FastLED.delay(2000);
-    fill_solid(leds, NUM_LEDS, CRGB::Red); // fill led ring purple
+    fill_solid(leds, ledCount, CRGB::Red); // fill led ring purple
     FastLED.show();                        // show led changes
     FastLED.delay(20);                     // pause 2 seconds
     idleStart = millis();
@@ -63,8 +62,8 @@ void setup()
 
 void loop()
 {
-    delay(DEBOUNCE);
-    int nowState = digitalRead(BUTTON); // read button state
+    delay(debounceTimeout);
+    int nowState = digitalRead(buttonPin); // read button state
     //int nowState = getButtonState();
 
     if (lastState == LOW && nowState == HIGH)
@@ -78,13 +77,13 @@ void loop()
 
         holdTime = millis() - pressStartTime;
 
-        if (mode == 0 && holdTime > SPEAKDELAY) // not a quick tap, switch to speaking mode
+        if (mode == 0 && holdTime > speakDelay) // not a quick tap, switch to speaking mode
         {
             //Serial.println("button held longer than 500ms");
             mode = 1;     // switch to speaking mode
             toggleMute(); // send keystrokes to toggle mute
 
-            fill_solid(leds, NUM_LEDS, CRGB::Purple);
+            fill_solid(leds, ledCount, CRGB::Purple);
             FastLED.show();
             idleStart = millis();
         }
@@ -98,14 +97,14 @@ void loop()
 
         idleStart = millis();
 
-        if (mode == 0 && holdTime < SPEAKDELAY) // not in speaking mode and a quick tap, increment modePresses
+        if (mode == 0 && holdTime < speakDelay) // not in speaking mode and a quick tap, increment modePresses
         {
-            if (tapInterval < 500)
+            if (tapInterval < maxTapInterval)
             { // if tap interval is recent, increment taps
 
                 modePresses++;
                 //Serial.println("incrementing mode presses to:" + String(modePresses));
-                if (modePresses >= MODECHANGETAPS) // mode presses exceed threshold, change mode
+                if (modePresses >= modeChangeTaps) // mode presses exceed threshold, change mode
                 {
                     handleModeChange(); // handle mode change as this is the 3rd tap
                 }
@@ -124,14 +123,14 @@ void loop()
         if (mode == 1) // speaking mode is engaged and button has been release
         {
             toggleMute();                          // mute mic
-            fill_solid(leds, NUM_LEDS, CRGB::Red); // fill ring with red
+            fill_solid(leds, ledCount, CRGB::Red); // fill ring with red
             FastLED.show();                        // show color changes
             mode = 0;                              // switch back to idle mode
             holdTime = 0;                          // reset hold time to zero
         }
     }
 
-    if (mode == 0 && ((millis() - idleStart) > TIMEOUT)) // check to see if idle exceeds timeout
+    if (mode == 0 && ((millis() - idleStart) > rgbTimeout)) // check to see if idle exceeds timeout
     {
         patternRainbow();
     }
@@ -146,7 +145,7 @@ void patternRainbow()
     if (breathBrightness++ > 255) // which color to starthue
         breathBrightness = 0;     // handle rollover after 255
 
-    fill_rainbow(leds, NUM_LEDS, breathBrightness);
+    fill_rainbow(leds, ledCount, breathBrightness);
 
     FastLED.show();
     FastLED.delay(20);
@@ -176,15 +175,15 @@ void handleModeChange()
 
     for (int i = 0; i < flashes; i++)
     {
-        fill_solid(leds, NUM_LEDS, CRGB::Black); // fill led ring purple
+        fill_solid(leds, ledCount, CRGB::Black); // fill led ring purple
         FastLED.show();                          // show led changes
         FastLED.delay(darkTime);                 // pause 2 seconds
 
-        fill_solid(leds, NUM_LEDS, color); // fill led ring purple
+        fill_solid(leds, ledCount, color); // fill led ring purple
         FastLED.show();                    // show led changes
         FastLED.delay(lightTime);          // pause 2 seconds
     }
-    fill_solid(leds, NUM_LEDS, CRGB::Red);
+    fill_solid(leds, ledCount, CRGB::Red);
     FastLED.show();
 }
 
@@ -195,7 +194,7 @@ void toggleMute()
     if (meetingMode == 0)
     {                                   // teams is active
         Keyboard.press(KEY_LEFT_CTRL);  // press left CTRL
-        Keyboard.press(' '); // press left shift
+        Keyboard.press(' '); // press space
         //Keyboard.press('M');            // press m
     }
     else
@@ -203,42 +202,7 @@ void toggleMute()
         Keyboard.press(KEY_LEFT_ALT); // press left ALT
         Keyboard.press('a');          // press a
     }
-    delay(100); // pause to confirm keystrokes register
+    delay(50); // pause to confirm keystrokes register
 
     Keyboard.releaseAll(); // release all keys
-}
-
-bool getButtonState()
-{ /* 
-    // read the state of the switch/button:
-    int currentState = digitalRead(BUTTON);
-
-    // check to see if you just pressed the button
-    // (i.e. the input went from LOW to HIGH), and you've waited long enough
-    // since the last press to ignore any noise:
-
-    // If the switch/button changed, due to noise or pressing:
-    if (currentState != lastFlickerableState)
-    {
-        // reset the debouncing timer
-        lastDebounceTime = millis();
-        // save the the last flickerable state
-        lastFlickerableState = currentState;
-    }
-
-    if ((millis() - lastDebounceTime) > DEBOUNCE)
-    {
-        // whatever the reading is at, it's been there for longer than the debounce
-        // delay, so take it as the actual current state:
-
-        // if the button state has changed:
-        if (lastSteadyState == LOW && currentState == HIGH)
-            Serial.println("The button is pressed")
-            else if (lastSteadyState == HIGH && currentState == LOW)
-                //Serial.println("The button is released");
-
-                // save the the last steady state
-                lastSteadyState = currentState;
-    }
-    return currentState; */
 }
