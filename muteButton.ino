@@ -19,7 +19,7 @@
 #define buttonPin 4 // pin for button
 //#define rgbTimeout 7000   // test timeout at 2 seconds
 #define rgbTimeout 3600000 // prod timeout shoudl be 1 hour
-#define speakDelay 500     // ms to hold button before engaging speaking mode
+#define speakDelay 300     // ms to hold button before engaging speaking mode
 #define debounceTimeout 15 // delay each loop by this to debounce button input
 #define modeChangeTaps 3   // number of taps to change modes
 #define maxTapInterval 250 // max interval between taps
