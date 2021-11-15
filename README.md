@@ -30,7 +30,7 @@
 1. Take apart the arcade button, remove the built in LED, and discard it.
 2. Use needle nose pliers to remove the metal LED contacts.
 3. Solder power and control wires to the new RGB LED.
-3. Run the LED wires down through the button housing, so the new RGB LED sits inside the black cylinder, on top of where the old LED contacts where mounted. Be sure to leave room so you can put the switch back.
+3. Run the LED wires down through the button housing, so the new RGB LED sits inside the black cylinder, on top of where the old LED contacts where mounted. Be sure to leave room so you can put the switch back. ![Button Housing](https://github.com/timchiii/pushToTalk/blob/main/switchAndButtonHousing.jpg?raw=true)
 4. Put the switch back on the button housing.
 5. Solder the remaining connection points per the wiring diagram above.
 6. 3d print (or otherwise acquire) a small case to mount the button. A very simple 3d model is included.
