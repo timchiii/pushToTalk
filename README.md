@@ -51,4 +51,4 @@
    - Purple flashes indicate Teams mode.
    - Blue flashes indicate Zoom mode.
 6. After being idle for approx. 1 hour, the LED will switch to idle mode and show rainbow colors.
-
+   - ![Rainbow Example](https://github.com/timchiii/pushToTalk/blob/main/ledBlue.jpg?raw=true)
