@@ -1,13 +1,13 @@
 # pushToTalk
 
 ** Wiring Diagram **
--GND -> 10kR 
--GND -> LED-
--10kR -> PIN 4
--PIN 4 -> button bottom
--VCC -> button side
--VCC -> LED+
--PIN 5 -> LED Data
+- GND -> 10kR 
+- GND -> LED-
+- 10kR -> PIN 4
+- PIN 4 -> button bottom
+- VCC -> button side
+- VCC -> LED+
+- PIN 5 -> LED Data
 
     
     ** List of Materials **
