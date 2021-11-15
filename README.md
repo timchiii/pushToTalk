@@ -34,7 +34,7 @@
 4. Put the switch back on the button housing.
 5. Solder the remaining connection points per the wiring diagram above.
 6. 3d print (or otherwise acquire) a small case to mount the button. A very simple 3d model is included.
-7. Put the button through the top of the case and connect it to the button housing. Set the Arduino inside so the micro USB plug is accessable from the hole in the back.
+7. Put the button through the top of the case and connect it to the button housing. Set the Arduino inside so the micro USB plug is accessable from the hole in the back. ![Bottom View](https://github.com/timchiii/pushToTalk/blob/main/wiredBottom.jpg?raw=true)
 8. Connect a micro USB cable from the Arduino to your PC
 9. Upload this sketch.
             
