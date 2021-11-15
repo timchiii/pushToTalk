@@ -46,7 +46,9 @@
    - It will light up purple and un-mute your mic.
 4. Release the button when you are finished speaking.
    - It will re-mute your mic and light up red to indicate mute.
+   - ![Button Lit Red](https://github.com/timchiii/pushToTalk/blob/main/idleRed.jpg?raw=true)
 5. To switch between Teams and Zoom, tap 3 times quickly.
    - Purple flashes indicate Teams mode.
    - Blue flashes indicate Zoom mode.
 6. After being idle for approx. 1 hour, the LED will switch to idle mode and show rainbow colors.
+
