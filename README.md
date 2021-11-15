@@ -44,6 +44,7 @@
 2. Ensure the meeting window has focus while using the button.
 3. Press and hold the button to talk.
    - It will light up purple and un-mute your mic.
+   - ![Purple While Pressed](https://github.com/timchiii/pushToTalk/blob/main/purpleWhilePressed.jpg?raw=true)
 4. Release the button when you are finished speaking.
    - It will re-mute your mic and light up red to indicate mute.
    - ![Button Lit Red](https://github.com/timchiii/pushToTalk/blob/main/idleRed.jpg?raw=true)
