@@ -25,31 +25,27 @@
    - Recommend red, black, and 3 other colors to distinguish functions
 
 
-        ** Directions **
-            1. Take apart the arcade button, remove the built in LED, and discard it.
-            2. Use needle nose pliers to remove the metal LED contacts.
-            3. Solder power and control wires to the new RGB LED.
-            3. Run the LED wires down through the button housing, so the new RGB LED
-                sits inside the black cylinder, on top of where the old LED contacts
-                where mounted. Be sure to leave room so you can put the switch back.
-            4. Put the switch back on the button housing.
-            5. Solder the remaining connection points per the wiring diagram above.
-            6. 3d print (or otherwise acquire) a small case to mount the button.
-            7. Put the button through the top of the case and connect it to the
-                button housing.
-            8. Connect a micro USB cable from the Arduino to your PC
-            9. Upload this sketch.
+**Directions**
+1. Take apart the arcade button, remove the built in LED, and discard it.
+2. Use needle nose pliers to remove the metal LED contacts.
+3. Solder power and control wires to the new RGB LED.
+3. Run the LED wires down through the button housing, so the new RGB LED sits inside the black cylinder, on top of where the old LED contacts where mounted. Be sure to leave room so you can put the switch back.
+4. Put the switch back on the button housing.
+5. Solder the remaining connection points per the wiring diagram above.
+6. 3d print (or otherwise acquire) a small case to mount the button.
+7. Put the button through the top of the case and connect it to the button housing.
+8. Connect a micro USB cable from the Arduino to your PC
+9. Upload this sketch.
             
 
-            ** Usage **
-                1. Open the Teams app and join a meeting.
-                2. Ensure the meeting window has focus while using the button.
-                3. Press and hold the button to talk.
-                    It will light up purple and un-mute your mic.
-                4. Release the button when you are finished speaking.
-                    It will re-mute your mic and light up red to indicate mute.
-                5. To switch between Teams and Zoom, tap 3 times quickly.
-                    Purple flashes indicate Teams mode.
-                    Blue flashes indicate Zoom mode.
-                6. After being idle for approx. 1 hour, the LED will switch to idle
-                    mode and show rainbow colors.
+**Usage**
+1. Open the Teams app and join a meeting.
+2. Ensure the meeting window has focus while using the button.
+3. Press and hold the button to talk.
+   - It will light up purple and un-mute your mic.
+4. Release the button when you are finished speaking.
+   - It will re-mute your mic and light up red to indicate mute.
+5. To switch between Teams and Zoom, tap 3 times quickly.
+   - Purple flashes indicate Teams mode.
+   - Blue flashes indicate Zoom mode.
+6. After being idle for approx. 1 hour, the LED will switch to idle mode and show rainbow colors.
