@@ -1,10 +1,7 @@
 # pushToTalk
 ## What is this?
-
 This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard. On button press, it sends keystrokes to toggle mute and changes the LED to purple or blue, depending on your mode. On button release, it toggles mute and changes the LED to red to indicate mute. Tap 3 times quickly to switch between Zoom and Teams modes. 
 **Note: You must join the meeting and mute yourself manually for this to work properly.**  **Zoom mode is experimental at this point.**
-
-
 
 ## Wiring Diagram
 - GND -> 10kR 
@@ -14,7 +11,6 @@ This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard
 - VCC -> button side
 - VCC -> LED+
 - PIN 5 -> LED Data
-
     
 ## List of Materials
 - 1x Arduino Pro Micro 
@@ -32,7 +28,7 @@ This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard
 - Hot glue gun, epoxy or 3d printer pen to mount the Arduino micro inside the button.
 
 
-**Directions**
+## Directions
 1. Take apart the arcade button, remove the built in LED, and discard it.
 2. Use needle nose pliers to remove the metal LED contacts.
 3. Solder power and control wires to the new RGB LED.
@@ -45,7 +41,7 @@ This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard
 9. Upload this sketch.
             
 
-**Usage**
+## Usage
 1. Open the Teams app and join a meeting.
 2. Ensure the meeting window has focus while using the button.
 3. Press and hold the button to talk.
@@ -61,5 +57,5 @@ This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard
    - ![Rainbow Example](https://github.com/timchiii/pushToTalk/blob/main/ledBlue.jpg?raw=true)
 
 
-**PS**
-I know what you're thinking, the gold is ugly. It was already in the printer. 
+### PS
+I know what you're thinking, the gold is ugly. You are correct. It was already in the printer. Better pictures will be uploaded after printing in a different filament.
