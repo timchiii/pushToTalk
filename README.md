@@ -21,9 +21,9 @@
    - https://www.amazon.com/dp/B07XYVN1GY?ref=ppx_yo2_dt_b_product_details&th=1
 - 1x 10k ohm resistor
    - https://www.amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QJB31M7/ref=sr_1_1_sspa?keywords=10k%2Bohm%2Bresistor&qid=1637011805&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFLMVgwRk5aTjM1TlYmZW5jcnlwdGVkSWQ9QTEwMjcwMzMyMzlCV0ZUWUpMUExYJmVuY3J5cHRlZEFkSWQ9QTA4MDc3MjEyQU1UQlZFV08xQUdMJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ&th=1
-5. Hookup wire
+- Hookup wire
    - Recommend red, black, and 3 other colors to distinguish functions
-6. Hot glue gun, epoxy or 3d printer pen to mount the Arduino micro inside the button.
+- Hot glue gun, epoxy or 3d printer pen to mount the Arduino micro inside the button.
 
 
 **Directions**
