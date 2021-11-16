@@ -11,15 +11,15 @@
 
     
 **List of Materials**
-1. 1x Arduino Pro Micro 
+- 1x Arduino Pro Micro 
    - https://www.amazon.com/dp/B08THVMQ46?psc=1&ref=ppx_yo2_dt_b_product_details
-2. 1x Addressable RGB led
+- 1x Addressable RGB led
    - I'm using WS2812B's but any version should work
    - https://www.amazon.com/gp/product/B01D1FFVOA/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
-3. 1x Translucent arcade button with built in LED
+- 1x Translucent arcade button with built in LED
    - The LED will be removed and replaced with the RGB variant
    - https://www.amazon.com/dp/B07XYVN1GY?ref=ppx_yo2_dt_b_product_details&th=1
-4. 1x 10k ohm resistor
+- 1x 10k ohm resistor
    - https://www.amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QJB31M7/ref=sr_1_1_sspa?keywords=10k%2Bohm%2Bresistor&qid=1637011805&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFLMVgwRk5aTjM1TlYmZW5jcnlwdGVkSWQ9QTEwMjcwMzMyMzlCV0ZUWUpMUExYJmVuY3J5cHRlZEFkSWQ9QTA4MDc3MjEyQU1UQlZFV08xQUdMJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ&th=1
 5. Hookup wire
    - Recommend red, black, and 3 other colors to distinguish functions
