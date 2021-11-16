@@ -1,11 +1,12 @@
 # pushToTalk
-**What is this?**
+##What is this?
 
 This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard. On button press, it sends keystrokes to toggle mute and changes the LED to purple or blue, depending on your mode. On button release, it toggles mute and changes the LED to red to indicate mute. Tap 3 times quickly to switch between Zoom and Teams modes. 
 **Note: You must join the meeting and mute yourself manually for this to work properly.**  **Zoom mode is experimental at this point.**
 
 
-**Wiring Diagram**
+
+##Wiring Diagram
 - GND -> 10kR 
 - GND -> LED-
 - 10kR -> PIN 4
@@ -15,7 +16,7 @@ This is a push to talk button for MS Teams and Zoom. It emmulates a USB keyboard
 - PIN 5 -> LED Data
 
     
-**List of Materials**
+##List of Materials
 - 1x Arduino Pro Micro 
    - https://www.amazon.com/dp/B08THVMQ46?psc=1&ref=ppx_yo2_dt_b_product_details
 - 1x Addressable RGB led
