@@ -1,7 +1,10 @@
 ## What is this?
 This is code, wiring diagram, BOM, and directions for a "push to talk" button for MS Teams and Zoom. It emmulates a USB keyboard. On button press, it sends keystrokes to toggle mute and changes the LED to purple or blue, depending on your mode. On button release, it toggles mute and changes the LED to red to indicate mute. Tap 3 times quickly to switch between Zoom and Teams modes. 
+
 **Note: You must join the meeting and mute yourself manually for this to work properly.**
+
 **Zoom mode is experimental at this point.**
+
 **Don't @ me if you accidentally swear at your boss.**
 
 ## Wiring Diagram
