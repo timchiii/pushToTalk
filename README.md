@@ -3,7 +3,7 @@ This is code, wiring diagram, BOM, and directions for a "push to talk" button fo
 
 **You must join the meeting and mute yourself manually for this to work properly.**
 
-**Teams/Zoom must be kept in focus while using this. Clicking in the chat window for a Teams meeting works reliably.
+**Teams/Zoom must be kept in focus while using this. Clicking in the chat window for a Teams meeting works reliably.**
 
 **Zoom mode is experimental at this point.**
 
