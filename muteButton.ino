@@ -50,9 +50,9 @@
 4. Release the button when you are finished speaking.
    - It will re-mute your mic and light up red to indicate mute.
    - ![Button Lit Red](https://github.com/timchiii/pushToTalk/blob/main/idleRed.jpg?raw=true)
-5. To switch between Teams and Zoom, tap 3 times quickly.
+5. To switch between Teams and meet, tap 3 times quickly.
    - Purple flashes indicate Teams mode.
-   - Blue flashes indicate Zoom mode.
+   - Blue flashes indicate meet mode.
 6. After being idle for approx. 1 hour, the LED will switch to idle mode and show rainbow colors.
    - ![Rainbow Example](https://github.com/timchiii/pushToTalk/blob/main/ledBlue.jpg?raw=true)
 
@@ -78,7 +78,7 @@ I know what you're thinking, the gold is ugly. It was already in the printer.
 
 int rainbowColor = 0; // global integer for tracking color in idle mode
 int lastState = LOW;  // global for last state of button
-int meetingMode = 0;  // 0 = teams, 1 = zoom
+int meetingMode = 0;  // 0 = teams, 1 = meet
 int modePresses = 0;  // track number of clicks to change modes
 int mode = 0;
 int lastFlickerableState; // 0 = idle, 1 = holding
@@ -249,8 +249,8 @@ void toggleMute()
     }
     else
     {
-        Keyboard.press(KEY_LEFT_ALT); // press left ALT
-        Keyboard.press('a');          // press a
+        Keyboard.press(KEY_LEFT_CTRL); // press left CTRL
+        Keyboard.press('d');          // press d
     }
     delay(10); // pause to confirm keystrokes register
 
